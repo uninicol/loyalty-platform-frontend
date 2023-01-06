@@ -1,17 +1,19 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab account
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header-container></app-header-container>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab account</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    <div *ngIf="!isLogged()">
+      <ion-item [button]="true" *ngFor="let opt of notLoggedOptions">
+        <ion-label>
+          {{opt}}
+        </ion-label>
+      </ion-item>
+    </div>
+    <ion-item [button]="true" *ngFor="let opt of loggedOptions">
+      <ion-label>
+        {{opt}}
+      </ion-label>
+    </ion-item>
 
-  <app-explore-container name="Tab account page"></app-explore-container>
+  </ion-list>
 </ion-content>

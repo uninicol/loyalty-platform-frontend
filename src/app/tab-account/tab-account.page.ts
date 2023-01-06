@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-tab-account',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabAccountPage implements OnInit {
 
-  constructor() { }
+  notLoggedOptions= ["Sign up now", "Sign in"]
+  loggedOptions=["Account", "Support", "Settings"]
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  public isLogged() {
+    return true;
+  }
 }

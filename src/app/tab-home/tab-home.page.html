@@ -1,17 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab home
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header-container></app-header-container>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!--aggiorna le campagne-->
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-  <app-explore-container name="Tab home page"></app-explore-container>
+  <!--barra delle categorie-->
+  <div class="scrolling-wrapper">
+    <ion-button class="card" *ngFor="let category of categories"
+                (click)="getCategory(category)">{{category}}</ion-button>
+  </div>
+
 </ion-content>

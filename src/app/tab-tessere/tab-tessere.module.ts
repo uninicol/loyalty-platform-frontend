@@ -8,6 +8,7 @@ import {TabTesserePageRoutingModule} from './tab-tessere-routing.module';
 
 import {TabTesserePage} from './tab-tessere.page';
 import {ExploreContainerComponentModule} from "../explore-container/explore-container.module";
+import {TabAccountPageModule} from "../tab-account/tab-account.module";
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {ExploreContainerComponentModule} from "../explore-container/explore-cont
     FormsModule,
     IonicModule,
     ExploreContainerComponentModule,
-    TabTesserePageRoutingModule
+    TabTesserePageRoutingModule,
+    TabAccountPageModule
   ],
   declarations: [TabTesserePage]
 })

@@ -8,6 +8,7 @@ import { TabHomePageRoutingModule } from './tab-home-routing.module';
 
 import { TabHomePage } from './tab-home.page';
 import {ExploreContainerComponentModule} from "../explore-container/explore-container.module";
+import {TabAccountPageModule} from "../tab-account/tab-account.module";
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {ExploreContainerComponentModule} from "../explore-container/explore-cont
     FormsModule,
     IonicModule,
     ExploreContainerComponentModule,
-    TabHomePageRoutingModule
+    TabHomePageRoutingModule,
+    TabAccountPageModule
   ],
   declarations: [TabHomePage]
 })

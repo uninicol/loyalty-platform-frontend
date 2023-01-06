@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-tab-home',
@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabHomePage implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  categories = ["Tutto", "Moda", "Tecnologia", "Bellezza", "Fitness e salute", "Lifestyle", "Sport", "Istruzione"]
+
+  handleRefresh($event: any) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      $event.target.complete();
+    }, 2000);
+  }
+
+  getCategory(category: any) {
+
+  }
 }

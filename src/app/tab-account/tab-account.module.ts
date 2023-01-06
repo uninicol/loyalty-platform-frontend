@@ -8,6 +8,7 @@ import {TabAccountPageRoutingModule} from './tab-account-routing.module';
 
 import {TabAccountPage} from './tab-account.page';
 import {ExploreContainerComponentModule} from "../explore-container/explore-container.module";
+import {HeaderContainerComponent} from "../header-container/header-container.component";
 
 @NgModule({
   imports: [
@@ -17,7 +18,10 @@ import {ExploreContainerComponentModule} from "../explore-container/explore-cont
     ExploreContainerComponentModule,
     TabAccountPageRoutingModule
   ],
-  declarations: [TabAccountPage]
+  exports: [
+    HeaderContainerComponent
+  ],
+  declarations: [TabAccountPage, HeaderContainerComponent]
 })
 export class TabAccountPageModule {
 }

@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'tab-account',
     loadChildren: () => import('./tab-account/tab-account.module').then( m => m.TabAccountPageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
   }
 ];
 @NgModule({
