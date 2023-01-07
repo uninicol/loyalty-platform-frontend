@@ -14,6 +14,44 @@ export class TabHomePage implements OnInit {
   }
 
   categories = ["Tutto", "Moda", "Tecnologia", "Bellezza", "Fitness e salute", "Lifestyle", "Sport", "Istruzione"]
+  currentCategory=this.categories[0]
+  campaigns = [
+    {
+      company: "Adidas",
+      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+    {
+      company: "Lenovo",
+      logo:"https://upload.wikimedia.org/wikipedia/commons/0/03/Lenovo_Global_Corporate_Logo.png",
+      description: "Laptop ultima generazione fino a 50$ di sconto"
+    },
+    {
+      company: "Adidas",
+      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+    {
+      company: "Adidas",
+      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+    {
+      company: "Adidas",
+      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+    {
+      company: "Adidas",
+      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+    {
+      company: "Adidas",
+      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+  ]
 
   handleRefresh($event: any) {
     setTimeout(() => {
@@ -23,6 +61,14 @@ export class TabHomePage implements OnInit {
   }
 
   getCategory(category: any) {
+
+  }
+
+  onIonInfinite($event: any) {
+
+  }
+
+  getCurrentCategory() {
 
   }
 }

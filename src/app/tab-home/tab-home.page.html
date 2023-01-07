@@ -2,14 +2,34 @@
 
 <ion-content [fullscreen]="true">
   <!--aggiorna le campagne-->
-  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh(categories)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <!--barra delle categorie-->
   <div class="scrolling-wrapper">
-    <ion-button class="card" *ngFor="let category of categories"
-                (click)="getCategory(category)">{{category}}</ion-button>
+    <ion-button class="card" size="small" fill="outline" *ngFor="let category of categories"
+                (click)="handleRefresh(category)">{{category}}</ion-button>
+    <!--- fare in modo che se cliccato il bottone diventa pieno-->
   </div>
 
+  <!--carte delle campagne-->
+  <ion-list>
+    <ion-item *ngFor="let campaign of campaigns">
+      <ion-card>
+        <ion-card-header>
+          <ion-avatar>
+            <img src={{campaign.logo}} alt=""/>
+          </ion-avatar>
+          <ion-card-title>{{campaign.company}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>{{campaign.description}}</ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <!--scroll infinito-->
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
