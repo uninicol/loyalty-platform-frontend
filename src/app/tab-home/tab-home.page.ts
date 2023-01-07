@@ -7,51 +7,52 @@ import {Component, OnInit} from '@angular/core';
 })
 export class TabHomePage implements OnInit {
 
+  currentCategory: string = "Tutto"
+  campaigns = [
+    {
+      company: "Adidas",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+    {
+      company: "Lenovo",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/0/03/Lenovo_Global_Corporate_Logo.png",
+      description: "Laptop ultima generazione fino a 50$ di sconto"
+    },
+    {
+      company: "Adidas",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+    {
+      company: "Adidas",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+    {
+      company: "Adidas",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+    {
+      company: "Adidas",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+    {
+      company: "Adidas",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
+      description: "Prendi le scarpe col 10% di sconto"
+    },
+  ]
+  categories = ["Tutto", "Moda", "Tecnologia", "Bellezza", "Fitness e salute", "Lifestyle", "Sport", "Istruzione"]
+
   constructor() {
   }
 
   ngOnInit() {
   }
 
-  categories = ["Tutto", "Moda", "Tecnologia", "Bellezza", "Fitness e salute", "Lifestyle", "Sport", "Istruzione"]
-  currentCategory=this.categories[0]
-  campaigns = [
-    {
-      company: "Adidas",
-      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
-      description: "Prendi le scarpe col 10% di sconto"
-    },
-    {
-      company: "Lenovo",
-      logo:"https://upload.wikimedia.org/wikipedia/commons/0/03/Lenovo_Global_Corporate_Logo.png",
-      description: "Laptop ultima generazione fino a 50$ di sconto"
-    },
-    {
-      company: "Adidas",
-      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
-      description: "Prendi le scarpe col 10% di sconto"
-    },
-    {
-      company: "Adidas",
-      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
-      description: "Prendi le scarpe col 10% di sconto"
-    },
-    {
-      company: "Adidas",
-      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
-      description: "Prendi le scarpe col 10% di sconto"
-    },
-    {
-      company: "Adidas",
-      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
-      description: "Prendi le scarpe col 10% di sconto"
-    },
-    {
-      company: "Adidas",
-      logo:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
-      description: "Prendi le scarpe col 10% di sconto"
-    },
-  ]
 
   handleRefresh($event: any) {
     setTimeout(() => {
@@ -69,6 +70,6 @@ export class TabHomePage implements OnInit {
   }
 
   getCurrentCategory() {
-
+    return this.currentCategory
   }
 }

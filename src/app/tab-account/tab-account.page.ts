@@ -17,6 +17,6 @@ export class TabAccountPage implements OnInit {
   }
 
   public isLogged() {
-    return true;
+    return false;
   }
 }

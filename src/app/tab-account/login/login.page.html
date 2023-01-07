@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Log In {{environment.companyName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" required=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" required=""></ion-input>
+      </ion-item>
+    </ion-row>
+    <br>
+    <ion-button type="submit" expand="block">Sign In</ion-button>
+    <ion-button type="submit" fill="clear" expand="block" [routerLink]="['/forgot-password']">
+      Forgot password?
+    </ion-button>
+    <ion-button type="submit" fill="clear" expand="block" [routerLink]="['/register']">
+      Sign up now
+    </ion-button>
+  </ion-grid>
+</ion-content>

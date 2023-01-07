@@ -3,17 +3,22 @@
 <ion-content [fullscreen]="true">
   <ion-list>
     <div *ngIf="!isLogged()">
-      <ion-item [button]="true" *ngFor="let opt of notLoggedOptions">
-        <ion-label>
-          {{opt}}
-        </ion-label>
+      <ion-item [button]="true" [routerLink]="['/register']">
+        <ion-label>Sign up now</ion-label>
+      </ion-item>
+      <ion-item [button]="true" [routerLink]="['/login']">
+        <ion-label>Sign in</ion-label>
       </ion-item>
     </div>
-    <ion-item [button]="true" *ngFor="let opt of loggedOptions">
-      <ion-label>
-        {{opt}}
-      </ion-label>
-    </ion-item>
 
+    <ion-item [button]="true" [routerLink]="['/']">
+      <ion-label>Account</ion-label>
+    </ion-item>
+    <ion-item [button]="true" [routerLink]="['/']">
+      <ion-label>Support</ion-label>
+    </ion-item>
+    <ion-item [button]="true" [routerLink]="['/']">
+      <ion-label>Settings</ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>

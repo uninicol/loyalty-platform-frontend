@@ -9,6 +9,7 @@ import {TabTesserePageRoutingModule} from './tab-tessere-routing.module';
 import {TabTesserePage} from './tab-tessere.page';
 import {ExploreContainerComponentModule} from "../explore-container/explore-container.module";
 import {TabAccountPageModule} from "../tab-account/tab-account.module";
+import {CardComponent} from "../card/card.component";
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import {TabAccountPageModule} from "../tab-account/tab-account.module";
     TabTesserePageRoutingModule,
     TabAccountPageModule
   ],
-  declarations: [TabTesserePage]
+  declarations: [TabTesserePage, CardComponent]
 })
 export class TabTesserePageModule {
 }

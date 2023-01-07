@@ -1,13 +1,9 @@
 .scrolling-wrapper {
-  overflow-x: hidden;
+  overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
 
   .card {
     display: inline-block;
   }
-}
-
-.card-thumbnail {
-  aspect-ratio: 16 / 9;
 }

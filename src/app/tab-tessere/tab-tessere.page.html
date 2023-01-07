@@ -1,5 +1,21 @@
 <app-header-container></app-header-container>
 
 <ion-content [fullscreen]="true">
-  <app-explore-container name="Tab tessere page"></app-explore-container>
+
+  <ion-card class="card-thumbnail" *ngFor="let card of cards">
+    <ion-card-header>
+      <ion-card-title>{{card.company}} card</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      code: {{card.id}}<br>
+      name: {{card.name}}<br>
+      points: {{card.points}}<br>
+      tier: {{card.tier}}
+    </ion-card-content>
+  </ion-card>
+
+  <!--scroll infinito-->
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

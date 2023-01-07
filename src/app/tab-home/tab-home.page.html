@@ -1,32 +1,18 @@
 <app-header-container></app-header-container>
 
 <ion-content [fullscreen]="true">
-  <!--aggiorna le campagne-->
-  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh(categories)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
   <!--barra delle categorie-->
-  <div class="scrolling-wrapper">
-    <ion-button class="card" size="small" fill="outline" *ngFor="let category of categories"
-                (click)="handleRefresh(category)">{{category}}</ion-button>
-    <!--- fare in modo che se cliccato il bottone diventa pieno-->
-  </div>
+  <app-categories-filter-buttons></app-categories-filter-buttons>
+
 
   <!--carte delle campagne-->
-  <ion-list>
-    <ion-item *ngFor="let campaign of campaigns">
-      <ion-card>
-        <ion-card-header>
-          <ion-avatar>
-            <img src={{campaign.logo}} alt=""/>
-          </ion-avatar>
-          <ion-card-title>{{campaign.company}}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>{{campaign.description}}</ion-card-content>
-      </ion-card>
-    </ion-item>
-  </ion-list>
+  <ion-card class="card-thumbnail" *ngFor="let campaign of campaigns">
+    <ion-card-header>
+      <!--<ion-avatar><img src={{campaign.logo}} alt=""/></ion-avatar>-->
+      <ion-card-title>{{campaign.company}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>{{campaign.description}}</ion-card-content>
+  </ion-card>
 
   <!--scroll infinito-->
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
