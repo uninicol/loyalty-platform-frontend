@@ -7,8 +7,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class TabAccountPage implements OnInit {
 
-  notLoggedOptions= ["Sign up now", "Sign in"]
-  loggedOptions=["Account", "Support", "Settings"]
+  notLoggedOptions = ["Sign up now", "Sign in"]
+  loggedOptions = ["Account", "Support", "Settings"]
 
   constructor() {
   }

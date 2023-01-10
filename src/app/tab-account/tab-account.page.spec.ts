@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {IonicModule} from '@ionic/angular';
 
-import { TabAccountPage } from './tab-account.page';
+import {TabAccountPage} from './tab-account.page';
 
 describe('TabAccountPage', () => {
   let component: TabAccountPage;
@@ -9,7 +9,7 @@ describe('TabAccountPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TabAccountPage ],
+      declarations: [TabAccountPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

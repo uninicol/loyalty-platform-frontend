@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {IonicModule} from '@ionic/angular';
 
-import { TabTesserePage } from './tab-tessere.page';
+import {TabTesserePage} from './tab-tessere.page';
 
 describe('TabTesserePage', () => {
   let component: TabTesserePage;
@@ -9,7 +9,7 @@ describe('TabTesserePage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TabTesserePage ],
+      declarations: [TabTesserePage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
