@@ -21,13 +21,13 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class CardComponent implements OnInit {
 
-  flip: string = 'inactive';
-
   constructor() {
   }
 
   ngOnInit() {
   }
+
+  flip: string = 'inactive';
 
   toggleFlip() {
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';

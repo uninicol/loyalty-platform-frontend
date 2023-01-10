@@ -12,19 +12,19 @@
     <ion-row>
       <ion-item>
         <ion-label position="floating">Email</ion-label>
-        <ion-input required="" type="text"></ion-input>
+        <ion-input type="text" required=""></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Password</ion-label>
-        <ion-input required="" type="password"></ion-input>
+        <ion-input type="password" required=""></ion-input>
       </ion-item>
     </ion-row>
     <br>
-    <ion-button expand="block" type="submit">Sign In</ion-button>
-    <ion-button [routerLink]="['/forgot-password']" expand="block" fill="clear" type="submit">
+    <ion-button type="submit" expand="block">Sign In</ion-button>
+    <ion-button type="submit" fill="clear" expand="block" [routerLink]="['/forgot-password']">
       Forgot password?
     </ion-button>
-    <ion-button [routerLink]="['/register']" expand="block" fill="clear" type="submit">
+    <ion-button type="submit" fill="clear" expand="block" [routerLink]="['/register']">
       Sign up now
     </ion-button>
   </ion-grid>

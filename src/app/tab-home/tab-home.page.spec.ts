@@ -1,7 +1,7 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {IonicModule} from '@ionic/angular';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
 
-import {TabHomePage} from './tab-home.page';
+import { TabHomePage } from './tab-home.page';
 
 describe('TabHomePage', () => {
   let component: TabHomePage;
@@ -9,7 +9,7 @@ describe('TabHomePage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TabHomePage],
+      declarations: [ TabHomePage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

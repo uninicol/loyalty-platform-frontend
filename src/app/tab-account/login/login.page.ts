@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {environment} from "../../../environments/environment";
 
 @Component({
@@ -9,8 +9,7 @@ import {environment} from "../../../environments/environment";
 export class LoginPage implements OnInit {
   environment = environment;
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
   }
