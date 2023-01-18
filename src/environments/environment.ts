@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   companyName: "LoyaltyPlatform",
-  baseUrl: 'http://localhost:4200/api'
+  apiUrl: 'http://localhost:4200/api'
 };
 
 /*

@@ -12,7 +12,7 @@
     <ion-row>
       <ion-item>
         <ion-label position="floating">Email</ion-label>
-        <ion-input type="email" ngModel email></ion-input>
+        <ion-input type="email" ngModel email [(ngModel)]="auth.email"></ion-input>
         <ion-note slot="helper">Enter a valid email</ion-note>
         <ion-note slot="error">Invalid email</ion-note>
       </ion-item>
@@ -20,17 +20,17 @@
     <ion-row>
       <ion-item>
         <ion-label position="floating">Password</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" [(ngModel)]="auth.password"></ion-input>
       </ion-item>
     </ion-row>
     <ion-row>
       <ion-item>
         <ion-label position="floating">Confirm password</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" [(ngModel)]="auth.confirm_password"></ion-input>
       </ion-item>
     </ion-row>
     <br>
-    <ion-button type="submit" expand="block">Sign up now</ion-button>
+    <ion-button type="submit" expand="block" (click)="register()">Sign up now</ion-button>
     <ion-button type="submit" fill="clear" expand="block" [routerLink]="['/login']">Log in</ion-button>
   </ion-grid>
 </ion-content>

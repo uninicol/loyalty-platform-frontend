@@ -1,10 +1,9 @@
 <!--aggiorna le campagne-->
-<ion-refresher (ionRefresh)="handleRefresh($event, currentCategory)" slot="fixed">
+<ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event, currentCategory)">
   <ion-refresher-content></ion-refresher-content>
 </ion-refresher>
 
 <div class="scrolling-wrapper">
-  <ion-button (click)="handleRefresh($event, category)" *ngFor="let category of categories" class="card" fill="outline"
-              id="{{category}}"
-              size="small">{{category}}</ion-button>
+  <ion-button id={{category}} class="card" size="small" fill="outline" *ngFor="let category of categories"
+              (click)="handleRefresh($event, category)">{{category}}</ion-button>
 </div>
