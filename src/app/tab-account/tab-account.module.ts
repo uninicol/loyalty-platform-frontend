@@ -7,7 +7,6 @@ import {IonicModule} from '@ionic/angular';
 import {TabAccountPageRoutingModule} from './tab-account-routing.module';
 
 import {TabAccountPage} from './tab-account.page';
-import {ExploreContainerComponentModule} from "../explore-container/explore-container.module";
 import {HeaderContainerComponent} from "../header-container/header-container.component";
 
 @NgModule({
@@ -15,7 +14,6 @@ import {HeaderContainerComponent} from "../header-container/header-container.com
     CommonModule,
     FormsModule,
     IonicModule,
-    ExploreContainerComponentModule,
     TabAccountPageRoutingModule
   ],
   exports: [
