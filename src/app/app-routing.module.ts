@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
@@ -33,7 +33,12 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () => import('./tab-account/forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
+  },
+  {
+    path: 'campaign-details',
+    loadChildren: () => import('./tab-home/campaign-details/campaign-details.module').then(m => m.CampaignDetailsPageModule)
   }
+
 ];
 @NgModule({
   imports: [

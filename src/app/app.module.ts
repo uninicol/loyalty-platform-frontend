@@ -14,7 +14,7 @@ import {IonicStorageModule} from "@ionic/storage-angular";
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule, HttpClientModule,
-    AuthModule, IonicStorageModule],
+    AuthModule, IonicStorageModule.forRoot()],
   providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
 })

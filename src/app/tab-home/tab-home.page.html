@@ -1,18 +1,10 @@
 <app-header-container></app-header-container>
 
 <ion-content [fullscreen]="true">
-  <!--barra delle categorie-->
-  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event, currentCategory)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
-  <div class="scrolling-wrapper">
-    <ion-button id={{category}} class="card" size="small" fill="outline" *ngFor="let category of categories"
-                (click)="handleRefresh($event, category)">{{category}}</ion-button>
-  </div>
+  <app-categories-filter-buttons></app-categories-filter-buttons>
 
   <!--carte delle campagne-->
-  <ion-card class="card-thumbnail" *ngFor="let campaign of campaigns">
+  <ion-card class="card-thumbnail" *ngFor="let campaign of campaigns" (click)="openCampaignDetails(campaign)">
     <ion-card-header>
       <!--<ion-avatar><img src={{campaign.logo}} alt=""/></ion-avatar>-->
       <ion-card-title>{{campaign.company}}</ion-card-title>

@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Campaign} from "./campaign";
+import {ModalController} from "@ionic/angular";
+import {CategoriesFilterButtonsComponent} from "./categories-filter-buttons/categories-filter-buttons.component";
+import {CampaignDetailsPage} from "./campaign-details/campaign-details.page";
 
 @Component({
   selector: 'app-tab-home',
@@ -8,19 +11,12 @@ import {Campaign} from "./campaign";
 })
 export class TabHomePage implements OnInit {
 
-  LIMIT = 5;
-  lastPicked = -1;
-
-  categories: string[]
-  currentCategory: string
+  LIMIT: number = 5;
+  lastPicked: number = -1;
   campaigns: Campaign[]
   displayedCampaigns: Campaign[]
 
-  constructor() {
-    this.categories = ["Tutto"]
-    this.categories = this.categories
-      .concat(["Moda", "Tecnologia", "Bellezza", "Fitness e salute", "Lifestyle", "Sport", "Istruzione"])
-    this.currentCategory = this.categories[0]
+  constructor(private modalController: ModalController) {
     this.campaigns = [
       {
         company: "Adidas",
@@ -70,6 +66,10 @@ export class TabHomePage implements OnInit {
       },
     ]
     this.displayedCampaigns = []
+
+    const categoriesButtons = this.modalController.create({
+      component: CategoriesFilterButtonsComponent
+    });
   }
 
   ngOnInit() {
@@ -94,21 +94,22 @@ export class TabHomePage implements OnInit {
       document.getElementById(category).setAttribute("fill", "solid")
       // @ts-ignore
       document.getElementById(this.currentCategory).setAttribute("fill", "outline")
-      this.currentCategory = category
 
       event.target.complete();
     }, 100);
-  }
-
-  getCategory(category: any) {
-
   }
 
   onIonInfinite($event: any) {
 
   }
 
-  getCurrentCategory() {
-    return this.currentCategory
+  async openCampaignDetails(campaign: Campaign) {
+    const modal = await this.modalController.create({
+      component: CampaignDetailsPage,
+      componentProps: {
+        inputValue: campaign
+      }
+    });
+    return await modal.present();
   }
 }
