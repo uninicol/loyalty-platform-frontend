@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Categories} from "./Categories";
 
 @Component({
   selector: 'app-categories-filter-buttons',
@@ -10,7 +11,10 @@ export class CategoriesFilterButtonsComponent implements OnInit {
   currentCategory: string
 
   constructor() {
-    this.categories = ["Tutto", "Moda", "Tecnologia", "Bellezza", "Fitness e salute", "Lifestyle", "Sport", "Istruzione"]
+    this.categories = Object.keys(Categories)
+      .filter(key => Number.isNaN(Number(key)))
+      .map(key => (key.charAt(0).toUpperCase() + key.slice(1)).split('_').join(' ')
+      )
     this.currentCategory = this.categories[0];
   }
 
