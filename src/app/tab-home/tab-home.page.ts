@@ -19,50 +19,52 @@ export class TabHomePage implements OnInit {
   constructor(private modalController: ModalController) {
     this.campaigns = [
       {
+        company: "Zara",
+        category: "Moda",
+        logo: "https://www.zara.com/logo.png",
+        description: "Iscriviti alla nostra newsletter e ricevi uno sconto del 10% sulla tua prossima spesa. Inoltre, parteciperai automaticamente ai nostri programmi di fidelizzazione per guadagnare premi esclusivi."
+      },
+      {
+        company: "Apple",
+        category: "Tecnologia",
+        logo: "https://www.apple.com/logo.png",
+        description: "Diventa membro di Apple Music e ottieni accesso a contenuti esclusivi e sconti sulle nuove uscite. Inoltre, ogni acquisto effettuato presso uno dei nostri store ti farà guadagnare punti per i premi."
+      },
+      {
+        company: "Sephora",
+        category: "Bellezza",
+        logo: "https://www.sephora.com/logo.png",
+        description: "Iscriviti al nostro programma di fidelizzazione Beauty Insider e ricevi sconti sui tuoi acquisti, campioni gratuiti e accesso a eventi esclusivi."
+      },
+      {
+        company: "Nike",
+        category: "Sport",
+        logo: "https://www.nike.com/logo.png",
+        description: "Unisciti al nostro programma Nike Member e ottieni accesso a sconti esclusivi, prodotti in anteprima e una serie di eventi esclusivi riservati ai membri."
+      },
+      {
+        company: "Lululemon",
+        category: "Fitness e salute",
+        logo: "https://www.lululemon.com/logo.png",
+        description: "Unisciti al programma di fidelizzazione Lululemon e ottieni accesso a sconti esclusivi, eventi esclusivi e programmi personalizzati per migliorare la tua salute e il tuo benessere."
+      },
+      {
+        company: "Coursera",
+        category: "Istruzione",
+        logo: "https://www.coursera.org/logo.png",
+        description: "Diventa membro di Coursera Plus e accedi a migliaia di corsi online. Inoltre, potrai guadagnare certificati verificati e partecipare a eventi esclusivi per i membri."
+      },
+      {
         company: "Adidas",
         category: "Sport",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
-        description: "Prendi le scarpe col 10% di sconto"
+        logo: "https://www.adidas.com/logo.png",
+        description: "Unisciti alla squadra Adidas e ottieni accesso a sconti esclusivi, prodotti in anteprima e partecipa a eventi esclusivi per i membri."
       },
       {
-        company: "Lenovo",
-        category: "Tecnologia",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/0/03/Lenovo_Global_Corporate_Logo.png",
-        description: "Laptop ultima generazione fino a 50$ di sconto"
-      },
-      {
-        company: "Adidas",
-        category: "Sport",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
-        description: "Prendi le scarpe col 10% di sconto"
-      },
-      {
-        company: "Lenovo",
-        category: "Tecnologia",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/0/03/Lenovo_Global_Corporate_Logo.png",
-        description: "Laptop ultima generazione fino a 50$ di sconto"
-      }, {
-        company: "Adidas",
-        category: "Sport",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
-        description: "Prendi le scarpe col 10% di sconto"
-      },
-      {
-        company: "Lenovo",
-        category: "Tecnologia",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/0/03/Lenovo_Global_Corporate_Logo.png",
-        description: "Laptop ultima generazione fino a 50$ di sconto"
-      }, {
-        company: "Adidas",
-        category: "Sport",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_brand_Adidas.png",
-        description: "Prendi le scarpe col 10% di sconto"
-      },
-      {
-        company: "Lenovo",
-        category: "Tecnologia",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/0/03/Lenovo_Global_Corporate_Logo.png",
-        description: "Laptop ultima generazione fino a 50$ di sconto"
+        company: "Fitbit",
+        category: "Fitness e salute",
+        logo: "https://www.fitbit.com/logo.png",
+        description: "Iscriviti al nostro programma di fidelizzazione Fitbit Premium e ottieni accesso a funzioni avanzate, programmi personalizzati e sconti sui prodotti Fitbit."
       },
     ]
     this.displayedCampaigns = []
