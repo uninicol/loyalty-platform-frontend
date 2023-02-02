@@ -1,15 +1,32 @@
 <app-header-container></app-header-container>
 
 <ion-content [fullscreen]="true">
-  <app-categories-filter-buttons></app-categories-filter-buttons>
+  <!--aggiorna le campagne-->
+  <ion-refresher (ionRefresh)="onIonRefresh($event)" slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="scrolling-wrapper">
+    <ion-button (click)="categoryButtonRefresh( category)" *ngFor="let category of categories" class="card"
+                fill="outline" id="{{category}}"
+                size="small">{{category}}</ion-button>
+  </div>
+
 
   <!--carte delle campagne-->
-  <ion-card class="card-thumbnail" *ngFor="let campaign of campaigns" (click)="openCampaignDetails(campaign)">
+  <ion-card (click)="openCampaignDetails(campaign)" *ngFor="let campaign of displayedCampaigns">
     <ion-card-header>
-      <!--<ion-avatar><img src={{campaign.logo}} alt=""/></ion-avatar>-->
-      <ion-card-title>{{campaign.company}}</ion-card-title>
+      <ion-toolbar>
+        <!--
+        <ion-avatar slot="start">
+          <img src="{{campaign.logo}}"
+               alt="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png"/>
+        </ion-avatar>
+        -->
+        <ion-card-title>{{campaign.company}}</ion-card-title>
+      </ion-toolbar>
     </ion-card-header>
-    <ion-card-content>{{campaign.description}}</ion-card-content>
+    <ion-card-content>{{campaign.shortDescription}}</ion-card-content>
   </ion-card>
 
   <!--scroll infinito-->

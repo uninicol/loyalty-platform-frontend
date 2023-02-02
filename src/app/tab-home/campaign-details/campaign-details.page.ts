@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Campaign} from "../campaign";
+import {Campaign} from "../Campaign";
 import {NavParams} from "@ionic/angular";
 
 @Component({
