@@ -1,57 +1,40 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {tap} from 'rxjs/operators';
-import {BehaviorSubject, Observable} from 'rxjs';
-
-import {Storage} from '@ionic/storage';
-import {User} from './user';
-import {AuthResponse} from './auth-response';
+import {JwtHelperService} from "@auth0/angular-jwt";
+import {Router} from "@angular/router";
+import {AES} from 'crypto-js';
+import {AuthResponse} from "./auth-response";
+import {catchError, map, Observable} from "rxjs";
 import {environment} from "../../environments/environment";
+import * as crypto from 'crypto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private jwtHelper = new JwtHelperService();
+  private secretKey = crypto.randomBytes(32).toString('hex');
 
-  authSubject = new BehaviorSubject(false);
-
-  constructor(private httpClient: HttpClient,
-              private storage: Storage) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
-  register(user: User): Observable<AuthResponse> {
-    return this.httpClient.post<AuthResponse>(`${environment.apiUrl}/register`, user).pipe(
-      tap(async (res: AuthResponse) => {
-
-        if (res.user) {
-          await this.storage.set("ACCESS_TOKEN", res.user.access_token);
-          await this.storage.set("EXPIRES_IN", res.user.expires_in);
-          this.authSubject.next(true);
-        }
-      })
-    );
+  login(username: string, password: string): Observable<void> {
+    let encryptedPassword = AES.encrypt(password, this.secretKey).toString();
+    return this.http.post<AuthResponse>(`${environment.apiUrl}/login`, {username, encryptedPassword}).pipe(
+      map((res: AuthResponse) => {
+        localStorage.setItem('access_token', res.user.access_token);
+        this.router.navigate(['/home']);
+      }),
+      catchError(async (err) => console.log(err)));
   }
 
-  login(user: User): Observable<AuthResponse> {
-    return this.httpClient.post<AuthResponse>(`${environment.apiUrl}/login`, user).pipe(
-      tap(async (res: AuthResponse) => {
-
-        if (res.user) {
-          await this.storage.set("ACCESS_TOKEN", res.user.access_token);
-          await this.storage.set("EXPIRES_IN", res.user.expires_in);
-          this.authSubject.next(true);
-        }
-      })
-    );
+  logout() {
+    localStorage.removeItem('access_token');
+    this.router.navigate(['/login']);
   }
 
-  async logout() {
-    await this.storage.remove("ACCESS_TOKEN");
-    await this.storage.remove("EXPIRES_IN");
-    this.authSubject.next(false);
-  }
-
-  isLoggedIn() {
-    return this.authSubject.asObservable();
+  public isAuthenticated(): boolean {
+    let token = localStorage.getItem('access_token');
+    return !this.jwtHelper.isTokenExpired(token);
   }
 }
