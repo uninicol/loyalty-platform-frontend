@@ -4,4 +4,5 @@ export interface Campaign {
   logo: string,
   description: string
   shortDescription: string
+  shopUrl: string
 }
