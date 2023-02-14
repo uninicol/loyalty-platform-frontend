@@ -9,59 +9,15 @@ import {environment} from "../../environments/environment";
   styleUrls: ['./tab-tessere.page.scss'],
 })
 export class TabTesserePage implements OnInit {
-
-  cardss = [
-    {
-      id: "64e3980f-0de9-4ce2-880e-7596883593c8",
-      company: "Adidas",
-      points: 100,
-      name: "Gianni",
-      tier: "1",
-    },
-    {
-      id: "64e3980f-0de9-4ce2-880e-7596883593c8",
-      company: "Adidas",
-      points: 100,
-      name: "Gianni",
-      tier: "1",
-    },
-    {
-      id: "64e3980f-0de9-4ce2-880e-7596883593c8",
-      company: "Adidas",
-      points: 100,
-      name: "Gianni",
-      tier: "1",
-    },
-    {
-      id: "64e3980f-0de9-4ce2-880e-7596883593c8",
-      company: "Adidas",
-      points: 100,
-      name: "Gianni",
-      tier: "1",
-    },
-    {
-      id: "64e3980f-0de9-4ce2-880e-7596883593c8",
-      company: "Adidas",
-      points: 100,
-      name: "Gianni",
-      tier: "1",
-    },
-    {
-      id: "64e3980f-0de9-4ce2-880e-7596883593c8",
-      company: "Adidas",
-      points: 100,
-      name: "Gianni",
-      tier: "1",
-    },
-
-  ]
-
   cards: Card[] = []
+  lastCardFlipped: number
+  lastCard: HTMLElement | null | undefined
 
   constructor(private httpClient: HttpClient) {
     httpClient
       .get<Card[]>(`${environment.apiUrl}/card/all`)
       .subscribe(dataFromBackend => this.cards = dataFromBackend);
+    this.lastCardFlipped = -1
   }
 
   ngOnInit() {
@@ -69,5 +25,13 @@ export class TabTesserePage implements OnInit {
 
   onIonInfinite($event: any) {
 
+  }
+
+  flip(id: number) {
+    if (this.lastCard != null)
+      this.lastCard.classList.toggle('is-flipped');
+    this.lastCard = document.getElementById(String(id));
+    // @ts-ignore
+    this.lastCard.classList.toggle('is-flipped');
   }
 }

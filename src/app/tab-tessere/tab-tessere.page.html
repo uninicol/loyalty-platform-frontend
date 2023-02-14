@@ -2,17 +2,33 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-card class="card-thumbnail" *ngFor="let card of cards">
-    <ion-card-header>
-      <!--<ion-card-title>{{card.company}} card</ion-card-title>-->
-    </ion-card-header>
-    <ion-card-content>
-      code: {{card.id}}<br>
-      name: {{card.name}}<br>
-      points: {{card.points}}<br>
-      tier: {{card.tier}}
-    </ion-card-content>
-  </ion-card>
+  <div *ngFor="let card of cards" class="scene">
+    <div (click)="flip(card.id)" class="card" id="{{card.id}}">
+      <div class="card__face card__face--front">
+        <ion-card>
+          <ion-card-header>
+            <!--<ion-card-title>{{card.company}} card</ion-card-title>-->
+            <ion-card-title>{{card.name}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            points: {{card.points}}<br>
+            tier: {{card.tier}}
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div class="card__face card__face--back">
+        <ion-card>
+          <ion-card-header>
+            <!--<ion-card-title>{{card.company}} card</ion-card-title>-->
+            <ion-card-title>codice: {{card.id}}<br></ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
 
   <!--scroll infinito-->
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
