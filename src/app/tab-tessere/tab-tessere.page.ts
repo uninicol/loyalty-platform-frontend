@@ -10,14 +10,11 @@ import {environment} from "../../environments/environment";
 })
 export class TabTesserePage implements OnInit {
   cards: Card[] = []
-  lastCardFlipped: number
-  lastCard: HTMLElement | null | undefined
 
   constructor(private httpClient: HttpClient) {
     httpClient
       .get<Card[]>(`${environment.apiUrl}/card/all`)
       .subscribe(dataFromBackend => this.cards = dataFromBackend);
-    this.lastCardFlipped = -1
   }
 
   ngOnInit() {
@@ -28,10 +25,8 @@ export class TabTesserePage implements OnInit {
   }
 
   flip(id: number) {
-    if (this.lastCard != null)
-      this.lastCard.classList.toggle('is-flipped');
-    this.lastCard = document.getElementById(String(id));
+    let flippedCard = document.getElementById(String(id));
     // @ts-ignore
-    this.lastCard.classList.toggle('is-flipped');
+    flippedCard.classList.toggle('is-flipped');
   }
 }
