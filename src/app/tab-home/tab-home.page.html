@@ -13,20 +13,28 @@
   </div>
 
 
+  <div *ngIf="displayedCampaigns.length===0" class="no-content">
+    Non ci sono campagne da vedere!
+  </div>
   <!--carte delle campagne-->
   <ion-card (click)="openCampaignDetails(campaign)" *ngFor="let campaign of displayedCampaigns">
     <ion-card-header>
       <ion-toolbar>
-        <!--
+
         <ion-avatar slot="start">
-          <img src="{{campaign.logo}}"
-               alt="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png"/>
+          <img alt=""
+               src="https://www.cecontemporary.com/wp-content/uploads/2018/10/WORK-IN-PROGRESS.jpg"/>
+          <!--" "{{campaign.logo}}"-->
         </ion-avatar>
-        -->
-        <ion-card-title>{{campaign.company}}</ion-card-title>
+
+        <ion-card-title>&emsp;{{campaign.company}}</ion-card-title>
       </ion-toolbar>
     </ion-card-header>
-    <ion-card-content>{{campaign.shortDescription}}</ion-card-content>
+    <ion-card-content>
+      <div class="content">
+        {{campaign.shortDescription}}
+      </div>
+    </ion-card-content>
   </ion-card>
 
   <!--scroll infinito-->

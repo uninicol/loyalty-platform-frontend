@@ -28,7 +28,7 @@ export class TabHomePage implements OnInit, AfterViewInit {
       .subscribe(dataFromBackend => this.campaigns = dataFromBackend);
     this.displayedCampaigns = []
     this.lastPicked = 0
-    this.categories = Object.keys(Categories)
+    this.categories = Object.keys(Categories) //enum to string
       .filter(key => Number.isNaN(Number(key)))
       .map(key => (key.charAt(0).toUpperCase() + key.slice(1)).split('_').join(' '))
     this.currentCategory = this.categories[0]
@@ -42,7 +42,7 @@ export class TabHomePage implements OnInit, AfterViewInit {
     this.categoryButtonRefresh(this.currentCategory)
   }
 
-  addItems(count: number, category: string) {
+  private addItems(count: number, category: string) {
     let sum = 0;
     let all = false;
     if (category === this.categories[0])
