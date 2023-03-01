@@ -1,5 +1,5 @@
 ion-card {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16/10;
 }
 
 ion-toolbar {
@@ -16,4 +16,8 @@ ion-toolbar {
   .card {
     display: inline-block;
   }
+}
+
+.content {
+  font-size: 1.25em;
 }

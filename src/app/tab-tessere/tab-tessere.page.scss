@@ -32,3 +32,13 @@ ion-card {
 .card__face--back {
   transform: rotateY(180deg);
 }
+
+.content {
+  font-size: 1.25em;
+}
+
+ion-button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Card} from "./Card";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {Campaign} from "../tab-home/Campaign";
+import {CampaignDetailsPage} from "../tab-home/campaign-details/campaign-details.page";
+import {ModalController} from "@ionic/angular";
 
 @Component({
   selector: 'app-tab-tessere',
@@ -11,7 +14,7 @@ import {environment} from "../../environments/environment";
 export class TabTesserePage implements OnInit {
   cards: Card[] = []
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private modalController: ModalController, private httpClient: HttpClient) {
     httpClient
       .get<Card[]>(`${environment.apiUrl}/card/all`)
       .subscribe(dataFromBackend => this.cards = dataFromBackend);
@@ -22,6 +25,16 @@ export class TabTesserePage implements OnInit {
 
   onIonInfinite($event: any) {
 
+  }
+
+  async openCampaignDetails(campaign: Campaign) {
+    const modal = await this.modalController.create({
+      component: CampaignDetailsPage,
+      componentProps: {
+        inputValue: campaign
+      }
+    });
+    return await modal.present();
   }
 
   flip(id: number) {
