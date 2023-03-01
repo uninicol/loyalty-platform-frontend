@@ -22,23 +22,6 @@ const routes: Routes = [
     path: 'search',
     loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
   },
-  {
-    path: 'register',
-    loadChildren: () => import('./tab-account/register/register.module').then(m => m.RegisterPageModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./tab-account/login/login.module').then(m => m.LoginPageModule)
-  },
-  {
-    path: 'forgot-password',
-    loadChildren: () => import('./tab-account/forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
-  },
-  {
-    path: 'campaign-details',
-    loadChildren: () => import('./tab-home/campaign-details/campaign-details.module').then(m => m.CampaignDetailsPageModule)
-  }
-
 ];
 @NgModule({
   imports: [

@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: TabHomePage
-  }
+  },
+  {
+    path: 'campaign-details',
+    loadChildren: () => import('./campaign-details/campaign-details.module').then(m => m.CampaignDetailsPageModule)
+  },
 ];
 
 @NgModule({
