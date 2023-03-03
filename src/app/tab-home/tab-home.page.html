@@ -27,7 +27,9 @@
           <!--" "{{campaign.logo}}"-->
         </ion-avatar>
 
-        <ion-card-title>&emsp;{{campaign.company}}</ion-card-title>
+        <ion-card-title>
+          &emsp;{{campaign.activityName.toString().replace("[", "").replace("]", "")}}
+        </ion-card-title>
       </ion-toolbar>
     </ion-card-header>
     <ion-card-content>

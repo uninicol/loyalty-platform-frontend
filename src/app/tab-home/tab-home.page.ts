@@ -21,17 +21,28 @@ export class TabHomePage implements OnInit, AfterViewInit {
   categories: string[]
   currentCategory: string
 
-  constructor(private modalController: ModalController, private httpClient: HttpClient) {
+  httpClient: HttpClient
+
+  constructor(private modalController: ModalController, httpClient: HttpClient) {
     this.campaigns = []
-    httpClient
-      .get<Campaign[]>(`${environment.apiUrl}/campaigns`)
-      .subscribe(dataFromBackend => this.campaigns = dataFromBackend);
+    this.httpClient = httpClient
+    this.updateCampaigns()
     this.displayedCampaigns = []
     this.lastPicked = 0
     this.categories = Object.keys(Categories) //enum to string
       .filter(key => Number.isNaN(Number(key)))
       .map(key => (key.charAt(0).toUpperCase() + key.slice(1)).split('_').join(' '))
     this.currentCategory = this.categories[0]
+  }
+
+  onIonRefresh(event: any) {
+    this.displayedCampaigns = []
+    this.lastPicked = 0
+    setTimeout(() => {
+      this.updateCampaigns()
+      this.addItems(this.LIMIT, this.currentCategory)
+      event.target.complete();
+    }, 300);
   }
 
   ngOnInit() {
@@ -75,14 +86,10 @@ export class TabHomePage implements OnInit, AfterViewInit {
     }, 300);
   }
 
-  onIonRefresh(event: any) {
-    this.displayedCampaigns = []
-    this.lastPicked = 0
-    this.addItems(this.LIMIT, this.currentCategory)
-    setTimeout(() => {
-      //chiamata API alle campagne nuove
-      event.target.complete();
-    }, 300);
+  private updateCampaigns() {
+    this.httpClient
+      .get<Campaign[]>(`${environment.apiUrl}/campaign/getCampaigns`)
+      .subscribe(dataFromBackend => this.campaigns = dataFromBackend);
   }
 
   async openCampaignDetails(campaign: Campaign) {

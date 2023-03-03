@@ -36,6 +36,6 @@ export class CategoriesFilterButtonsComponent implements OnInit {
   }
 
   handleRefresh($event: any, category: string) {
-
+    //TODO se disaccoppio componente
   }
 }

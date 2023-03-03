@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{campaign.company}}</ion-title>
+    <ion-title>{{campaign.activityName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,5 +10,7 @@
   <b>Descrizione:</b><br>
   {{campaign.description}}<br>
   <ion-button href="{{campaign.shopUrl}}" size="small">Visita lo shop</ion-button>
-  <ion-button size="small">Ricevi i vantaggi</ion-button>
+  <div *ngIf="userAlreadySubscribed()">
+    <ion-button size="small">Ricevi i vantaggi</ion-button>
+  </div>
 </ion-content>

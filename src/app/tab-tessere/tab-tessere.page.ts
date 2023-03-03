@@ -24,7 +24,7 @@ export class TabTesserePage implements OnInit {
   }
 
   onIonInfinite($event: any) {
-
+    //TODO implementare
   }
 
   async openCampaignDetails(campaign: Campaign) {

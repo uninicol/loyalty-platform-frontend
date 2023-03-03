@@ -17,4 +17,8 @@ export class CampaignDetailsPage implements OnInit {
   ngOnInit() {
   }
 
+  userAlreadySubscribed() {
+    //TODO da implementare
+    throw new Error("not Implemented");
+  }
 }
