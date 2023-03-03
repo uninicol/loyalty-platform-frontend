@@ -26,17 +26,6 @@ export class TabTesserePage implements OnInit {
   onIonInfinite($event: any) {
     //TODO implementare
   }
-
-  async openCampaignDetails(campaign: Campaign) {
-    const modal = await this.modalController.create({
-      component: CampaignDetailsPage,
-      componentProps: {
-        inputValue: campaign
-      }
-    });
-    return await modal.present();
-  }
-
   async openCampaignDetails(campaign: Campaign) {
     const modal = await this.modalController.create({
       component: CampaignDetailsPage,
