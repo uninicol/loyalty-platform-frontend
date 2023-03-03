@@ -24,6 +24,7 @@ export class AuthService {
       map((res: AuthResponse) => {
         localStorage.setItem('access_token', res.user.access_token);
         this.router.navigate(['/home']);
+        //TODO se il login non è corretto deve fare qualcosa
       }),
       catchError(async (err) => console.log(err)));
   }
