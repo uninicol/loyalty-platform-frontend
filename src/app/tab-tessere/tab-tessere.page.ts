@@ -37,6 +37,16 @@ export class TabTesserePage implements OnInit {
     return await modal.present();
   }
 
+  async openCampaignDetails(campaign: Campaign) {
+    const modal = await this.modalController.create({
+      component: CampaignDetailsPage,
+      componentProps: {
+        inputValue: campaign
+      }
+    });
+    return await modal.present();
+  }
+
   flip(id: number) {
     let flippedCard = document.getElementById(String(id));
     // @ts-ignore
