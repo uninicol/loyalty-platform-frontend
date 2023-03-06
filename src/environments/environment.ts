@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   companyName: "LoyaltyPlatform",
-  apiUrl: 'http://localhost:4200/api'
+  apiUrl: 'http://localhost:4200/api',
+  jwtKey: "gfdgadfjdsoiagjiodjgijgdf"
 };
 
 /*

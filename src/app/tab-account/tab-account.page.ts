@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-tab-account',
@@ -7,16 +8,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class TabAccountPage implements OnInit {
 
-  notLoggedOptions= ["Sign up now", "Sign in"]
-  loggedOptions=["Account", "Support", "Settings"]
-
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
   }
 
   public isLogged() {
-    return false;
+    return this.authService.isLoggedIn();
+  }
+
+  logout() {
+    this.authService.logout()
   }
 }
