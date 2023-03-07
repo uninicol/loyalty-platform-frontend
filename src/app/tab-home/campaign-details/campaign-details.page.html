@@ -10,7 +10,7 @@
   <b>Descrizione:</b><br>
   {{campaign.description}}<br>
   <ion-button href="{{campaign.shopUrl}}" size="small">Visita lo shop</ion-button>
-  <div *ngIf="userAlreadySubscribed()">
-    <ion-button size="small">Ricevi i vantaggi</ion-button>
+  <div *ngIf="!isUserAlreadySubscribed">
+    <ion-button (click)="subscribeToCampaign()" size="small">Ricevi i vantaggi</ion-button>
   </div>
 </ion-content>

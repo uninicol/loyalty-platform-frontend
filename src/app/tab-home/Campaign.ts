@@ -1,4 +1,5 @@
 export interface Campaign {
+  id: number
   activityName: string[],
   category: string,
   logo: string,

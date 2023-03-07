@@ -49,10 +49,10 @@ export class AuthService {
     this.clean()
   }
 
-  public getUser(): any {
+  public getUser(): UserDetails | null {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) return JSON.parse(user);
-    return {};
+    return null;
   }
 
   public isLoggedIn(): boolean {
