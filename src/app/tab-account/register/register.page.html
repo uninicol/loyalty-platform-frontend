@@ -12,19 +12,19 @@
     <ion-row>
       <ion-item>
         <ion-label position="floating">Name</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="auth.name"></ion-input>
       </ion-item>
     </ion-row>
     <ion-row>
       <ion-item>
         <ion-label position="floating">Surname</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="auth.surname"></ion-input>
       </ion-item>
     </ion-row>
     <ion-row>
       <ion-item>
         <ion-label position="floating">Telephone number</ion-label>
-        <ion-input placeholder="888-888-8888" type="tel"></ion-input>
+        <ion-input [(ngModel)]="auth.telephoneNumber" type="tel"></ion-input>
       </ion-item>
     </ion-row>
     <ion-row>

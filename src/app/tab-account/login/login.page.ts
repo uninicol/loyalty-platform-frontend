@@ -54,17 +54,18 @@ export class LoginPage implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private authService: AuthService) {
-
   }
 
   ngOnInit() {
   }
 
   login() {
-    this.authService.login(this.auth.email, this.auth.password);
-    // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    // if (isValid)
-    //   this.router.navigateByUrl(returnUrl)
-    //else error
+    let success = this.authService.login(this.auth.email, this.auth.password);
+    if (!success)
+      throw new Error("login non andato a buon fine")
+    else {
+      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+      this.router.navigateByUrl(returnUrl)
+    }
   }
 }

@@ -12,11 +12,13 @@ import {AuthService} from "../../auth/auth.service";
 export class RegisterPage implements OnInit {
   environment = environment;
   auth = {
+    name: '',
+    surname: '',
     email: '',
     password: '',
-    confirm_password: ''
+    confirm_password: '',
+    telephoneNumber: ''
   }
-
 
   constructor(private httpClient: HttpClient,
               private route: ActivatedRoute,
@@ -29,18 +31,14 @@ export class RegisterPage implements OnInit {
 
   public register() {
     if (this.auth.password != this.auth.confirm_password)
-      return false  //TODO errore registrazione
-    this.httpClient
-      .post<boolean>(`${environment.apiUrl}/users/register`, this.auth)
-      .subscribe(isValid => {
-        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        if (isValid) {
-          this.authService.login(this.auth.email, this.auth.password);
-          this.router.navigateByUrl(returnUrl)
-        }
-        //else error
-      });
-    return true
+      throw new Error("password uguali")
+    let success = this.authService.register(this.auth.name, this.auth.surname, this.auth.email, this.auth.password, this.auth.telephoneNumber);
+    if (success) // TODO ???
+      throw new Error("registrazione non andata a buon fine")
+    else {
+      this.authService.login(this.auth.email, this.auth.password)
+      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+      this.router.navigateByUrl(returnUrl)
+    }
   }
-
 }

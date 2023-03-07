@@ -18,6 +18,7 @@ import {CategoriesFilterButtonsComponent} from "./categories-filter-buttons/cate
     TabHomePageRoutingModule,
     TabAccountPageModule
   ],
-    declarations: [TabHomePage, CategoriesFilterButtonsComponent]
+  declarations: [TabHomePage, CategoriesFilterButtonsComponent]
 })
-export class TabHomePageModule {}
+export class TabHomePageModule {
+}
