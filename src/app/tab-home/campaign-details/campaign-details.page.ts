@@ -28,20 +28,22 @@ export class CampaignDetailsPage implements OnInit {
     let userId = this.auth.getUser()?.id
     if (userId == null)
       return false // TODO non essendo loggato chiedere se registrarsi o loggarsi
-    let isRegistered = false
-    this.http.post<boolean>(`${environment.apiUrl}/client/${userId}/isRegisteredTo/${this.campaign.id}`, {})
+    let isRegistered: boolean = false
+    this.http.post<boolean>(`${environment.apiUrl}/client/registerToCampaign/${this.campaign.id}`, {})
       .subscribe(value => isRegistered = value)
     return isRegistered;
   }
 
-  subscribeToCampaign() {
-    if (this.isUserAlreadySubscribed)
-      return
+  async subscribeToCampaign() {
     let userId = this.auth.getUser()?.id
     if (userId == null)
       throw new Error("Utente non loggato") // TODO chiedere login o registrazione
-    this.http.post(`${environment.apiUrl}/client/${userId}/isRegisteredTo/${this.campaign.id}`, {})
+    let response
+    this.http.post(`${environment.apiUrl}/client/isRegisteredTo/${this.campaign.id}`,
+      {},
+      {responseType: "text"})
+      .subscribe(value => response = value)
     this.isUserAlreadySubscribed = true
-    console.log("iscritto alla campagna")
+    console.log(response)
   }
 }
