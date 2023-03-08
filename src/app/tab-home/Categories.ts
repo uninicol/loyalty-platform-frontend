@@ -1,10 +1,10 @@
 export enum Categories {
-  Tutto,
-  Moda,
-  Tecnologia,
-  Bellezza,
-  Fitness_e_salute,
-  Lifestyle,
-  Sport,
-  Istruzione
+  TUTTO,
+  MODA,
+  TECNOLOGIA,
+  BELLEZZA,
+  FITNESS_E_SALUTE,
+  LIFESTYLE,
+  SPORT,
+  ISTRUZIONE
 }
