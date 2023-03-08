@@ -14,7 +14,7 @@ import {environment} from "../../environments/environment";
 })
 export class TabHomePage implements OnInit, AfterViewInit {
 
-  LIMIT: number = 4
+  CAMPAIGNS_DISPLAYED: number = 4
   lastPicked: number
   campaigns: Campaign[]
   displayedCampaigns: Campaign[]
@@ -26,13 +26,14 @@ export class TabHomePage implements OnInit, AfterViewInit {
   constructor(private modalController: ModalController, httpClient: HttpClient) {
     this.campaigns = []
     this.httpClient = httpClient
-    this.updateCampaigns()
     this.displayedCampaigns = []
     this.lastPicked = 0
     this.categories = Object.keys(Categories) //enum to string
       .filter(key => Number.isNaN(Number(key)))
       .map(key => (key.charAt(0).toUpperCase() + key.slice(1)).split('_').join(' '))
     this.currentCategory = this.categories[0]
+    this.updateCampaigns()
+    this.addItems()
   }
 
   onIonRefresh(event: any) {
@@ -40,7 +41,7 @@ export class TabHomePage implements OnInit, AfterViewInit {
     this.lastPicked = 0
     setTimeout(() => {
       this.updateCampaigns()
-      this.addItems(this.LIMIT, this.currentCategory)
+      this.addItems()
       event.target.complete();
     }, 300);
   }
@@ -49,29 +50,12 @@ export class TabHomePage implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.addItems(this.LIMIT, this.currentCategory)
     this.categoryButtonRefresh(this.currentCategory)
-  }
-
-  private addItems(count: number, category: string) {
-    let sum = 0;
-    let all = false;
-    if (category === this.categories[0])
-      all = true
-    let i;
-    for (i = this.lastPicked; sum != count && i < this.campaigns.length; i++) {
-      if (all || this.campaigns[i].category === category) {
-        // @ts-ignore
-        this.displayedCampaigns.push(this.campaigns[i]);
-        sum++
-      }
-    }
-    this.lastPicked = i;
   }
 
   onIonInfinite(event: any) {
     setTimeout(() => {
-      this.addItems(this.LIMIT, this.currentCategory)
+      this.addItems()
       event.target.complete();
     }, 1000);
   }
@@ -82,8 +66,28 @@ export class TabHomePage implements OnInit, AfterViewInit {
       this.currentCategory = category;
       this.displayedCampaigns = []
       this.lastPicked = 0
-      this.addItems(this.LIMIT, category)
+      this.addItemsByCategory(category)
     }, 300);
+  }
+
+  private addItemsByCategory(category: string) {
+    let sum = 0;
+    let all = false;
+    if (category === this.categories[0])
+      all = true
+    let i;
+    for (i = this.lastPicked; sum != this.CAMPAIGNS_DISPLAYED && i < this.campaigns.length; i++) {
+      if (all || this.campaigns[i].category === category) {
+        // @ts-ignore
+        this.displayedCampaigns.push(this.campaigns[i]);
+        sum++
+      }
+    }
+    this.lastPicked = i;
+  }
+
+  private addItems() {
+    this.addItemsByCategory(this.currentCategory)
   }
 
   private updateCampaigns() {
