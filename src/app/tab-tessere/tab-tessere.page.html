@@ -2,6 +2,10 @@
 
 <ion-content [fullscreen]="true">
 
+  <ion-refresher (ionRefresh)="onIonRefresh($event)" slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div *ngIf="cards.length===0" class="no-content">
     Non hai ancora nessuna tessera!
   </div>
@@ -33,7 +37,7 @@
 
           <ion-card-content>
             <div class="content">
-              campagna attuale:
+              campagna attuale: {{card.campaign.shortDescription}}
             </div>
           </ion-card-content>
           <ion-button (click)="openCampaignDetails(card.campaign)" fill="outline">

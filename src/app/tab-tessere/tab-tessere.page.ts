@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {Campaign} from "../tab-home/Campaign";
 import {CampaignDetailsPage} from "../tab-home/campaign-details/campaign-details.page";
 import {ModalController} from "@ionic/angular";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-tab-tessere',
@@ -12,20 +13,39 @@ import {ModalController} from "@ionic/angular";
   styleUrls: ['./tab-tessere.page.scss'],
 })
 export class TabTesserePage implements OnInit {
-  cards: Card[] = []
 
-  constructor(private modalController: ModalController, private httpClient: HttpClient) {
-    httpClient
-      .get<Card[]>(`${environment.apiUrl}/card/all`)
-      .subscribe(dataFromBackend => this.cards = dataFromBackend);
+  CARD_DISPLAYED_EACH_REFRESH: number = 10
+  cards: Card[] = []
+  displayedCards: Card[] = []
+  lastPicked: number = 0
+
+  constructor(private modalController: ModalController,
+              private httpClient: HttpClient,
+              private auth: AuthService) {
+    if (this.auth.isLoggedIn())
+      this.updateCards();
   }
 
   ngOnInit() {
   }
 
-  onIonInfinite($event: any) {
-    //TODO implementare
+  onIonInfinite(event: any) {
+    setTimeout(() => {
+      this.addItems()
+      event.target.complete();
+    }, 1000);
   }
+
+  onIonRefresh(event: any) {
+    this.displayedCards = []
+    this.lastPicked = 0
+    setTimeout(() => {
+      this.updateCards()
+      this.addItems()
+      event.target.complete();
+    }, 300);
+  }
+
   async openCampaignDetails(campaign: Campaign) {
     const modal = await this.modalController.create({
       component: CampaignDetailsPage,
@@ -40,5 +60,20 @@ export class TabTesserePage implements OnInit {
     let flippedCard = document.getElementById(String(id));
     // @ts-ignore
     flippedCard.classList.toggle('is-flipped');
+  }
+
+  private updateCards() {
+    this.httpClient.get<Card[]>(`${environment.apiUrl}/customerCard/getCards`)
+      .subscribe(dataFromBackend => this.cards = dataFromBackend);
+  }
+
+  private addItems() {
+    let sum = 0
+    let i
+    for (i = this.lastPicked; sum != this.CARD_DISPLAYED_EACH_REFRESH && i < this.cards.length; i++) {
+      this.displayedCards.push(this.cards[i])
+      sum++
+    }
+    this.lastPicked = i
   }
 }
