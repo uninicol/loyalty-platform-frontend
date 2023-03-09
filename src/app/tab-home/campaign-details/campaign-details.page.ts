@@ -25,25 +25,21 @@ export class CampaignDetailsPage implements OnInit {
   }
 
   isUserAlreadySubscribedCheck(): boolean {
-    let userId = this.auth.getUser()?.id
-    if (userId == null)
+    if (!this.auth.isLoggedIn())
       return false // TODO non essendo loggato chiedere se registrarsi o loggarsi
-    let isRegistered: boolean = false
-    this.http.post<boolean>(`${environment.apiUrl}/client/registerToCampaign/${this.campaign.id}`, {})
+    let isRegistered = false
+    this.http.post<boolean>(`${environment.apiUrl}/client/isRegisteredTo/${this.campaign.id}`, {})
       .subscribe(value => isRegistered = value)
     return isRegistered;
   }
 
   async subscribeToCampaign() {
-    let userId = this.auth.getUser()?.id
-    if (userId == null)
+    if (!this.auth.isLoggedIn())
       throw new Error("Utente non loggato") // TODO chiedere login o registrazione
-    let response
-    this.http.post(`${environment.apiUrl}/client/isRegisteredTo/${this.campaign.id}`,
+    this.http.post(`${environment.apiUrl}/client/registerToCampaign/${this.campaign.id}`,
       {},
       {responseType: "text"})
-      .subscribe(value => response = value)
+      .subscribe(value => console.log(value))
     this.isUserAlreadySubscribed = true
-    console.log(response)
   }
 }
