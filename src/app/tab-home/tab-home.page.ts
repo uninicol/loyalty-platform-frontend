@@ -33,7 +33,6 @@ export class TabHomePage implements OnInit, AfterViewInit {
       .map(key => (key.charAt(0).toUpperCase() + key.slice(1)).split('_').join(' '))
     this.currentCategory = this.categories[0]
     this.updateCampaigns()
-    this.addItems()
   }
 
   onIonRefresh(event: any) {
@@ -41,7 +40,6 @@ export class TabHomePage implements OnInit, AfterViewInit {
     this.lastPicked = 0
     setTimeout(() => {
       this.updateCampaigns()
-      this.addItems()
       event.target.complete();
     }, 300);
   }
@@ -93,7 +91,10 @@ export class TabHomePage implements OnInit, AfterViewInit {
   private updateCampaigns() {
     this.httpClient
       .get<Campaign[]>(`${environment.apiUrl}/campaign/getCampaigns`)
-      .subscribe(dataFromBackend => this.campaigns = dataFromBackend);
+      .subscribe(dataFromBackend => {
+        this.campaigns = dataFromBackend
+        this.addItems()
+      });
   }
 
   async openCampaignDetails(campaign: Campaign) {

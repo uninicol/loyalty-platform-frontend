@@ -41,7 +41,6 @@ export class TabTesserePage implements OnInit {
     this.lastPicked = 0
     setTimeout(() => {
       this.updateCards()
-      this.addItems()
       event.target.complete();
     }, 300);
   }
@@ -64,7 +63,10 @@ export class TabTesserePage implements OnInit {
 
   private updateCards() {
     this.httpClient.get<Card[]>(`${environment.apiUrl}/customerCard/getCards`)
-      .subscribe(dataFromBackend => this.cards = dataFromBackend);
+      .subscribe(dataFromBackend => {
+        this.cards = dataFromBackend
+        this.addItems()
+      });
   }
 
   private addItems() {
