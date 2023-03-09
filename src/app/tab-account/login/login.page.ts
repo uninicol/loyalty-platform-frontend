@@ -63,9 +63,8 @@ export class LoginPage implements OnInit {
     let success = this.authService.login(this.auth.email, this.auth.password);
     if (!success)
       throw new Error("login non andato a buon fine")
-    else {
-      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-      this.router.navigateByUrl(returnUrl)
-    }
+
+    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.router.navigateByUrl(returnUrl)
   }
 }

@@ -33,12 +33,9 @@ export class RegisterPage implements OnInit {
     if (this.auth.password != this.auth.confirm_password)
       throw new Error("password uguali")
     let success = this.authService.register(this.auth.name, this.auth.surname, this.auth.email, this.auth.password, this.auth.telephoneNumber);
-    if (success) // TODO ???
+    if (!success)
       throw new Error("registrazione non andata a buon fine")
-    else {
-      this.authService.login(this.auth.email, this.auth.password)
-      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-      this.router.navigateByUrl(returnUrl)
-    }
+    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.router.navigateByUrl(returnUrl)
   }
 }

@@ -20,14 +20,17 @@ export class AuthService {
 
   register(name: string, surname: string, email: string, password: string, telephoneNumber: string): boolean {
     //password = AES.encrypt(password, environment.jwtKey).toString(); // con https non serve
-    let returned = ""
+    let success = true
     this.http.post(
       `${environment.apiUrl}/client/auth/signup`, {name, surname, email, password, telephoneNumber},
-      {responseType: "text"})
-      .subscribe(value => {
-        returned = value
-      })
-    return returned === "OK";
+      {observe: 'response'})
+      .subscribe(
+        value => {
+          if (value.status !== 200) success = true
+          else this.saveUser(value.body)
+        }
+      )
+    return success;
   }
 
   login(email: string, password: string): boolean {
