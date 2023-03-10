@@ -7,6 +7,13 @@ import {HttpClient} from "@angular/common/http";
 
 import {environment} from "../../environments/environment";
 
+
+function categoriesEnumToString(): string[] {
+  return Object.keys(Categories)
+    .filter(key => Number.isNaN(Number(key)))
+    .map(key => (key.charAt(0).toUpperCase() + key.slice(1)).split('_').join(' '))
+}
+
 @Component({
   selector: 'app-tab-home',
   templateUrl: './tab-home.page.html',
@@ -20,17 +27,15 @@ export class TabHomePage implements OnInit, AfterViewInit {
   displayedCampaigns: Campaign[]
   categories: string[]
   currentCategory: string
-
   httpClient: HttpClient
 
-  constructor(private modalController: ModalController, httpClient: HttpClient) {
+  constructor(private modalController: ModalController,
+              httpClient: HttpClient) {
     this.campaigns = []
     this.httpClient = httpClient
     this.displayedCampaigns = []
     this.lastPicked = 0
-    this.categories = Object.keys(Categories) //enum to string
-      .filter(key => Number.isNaN(Number(key)))
-      .map(key => (key.charAt(0).toUpperCase() + key.slice(1)).split('_').join(' '))
+    this.categories = categoriesEnumToString.call(this);
     this.currentCategory = this.categories[0]
     this.updateCampaigns()
   }
