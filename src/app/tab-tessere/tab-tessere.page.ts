@@ -14,6 +14,7 @@ import {AuthService} from "../auth/auth.service";
 })
 export class TabTesserePage implements OnInit {
 
+  isLoggedIn: boolean
   CARD_DISPLAYED_EACH_REFRESH: number = 10
   cards: Card[] = []
   displayedCards: Card[] = []
@@ -22,7 +23,8 @@ export class TabTesserePage implements OnInit {
   constructor(private modalController: ModalController,
               private httpClient: HttpClient,
               private auth: AuthService) {
-    if (this.auth.isLoggedIn())
+    this.isLoggedIn = auth.isLoggedIn()
+    if (this.isLoggedIn)
       this.updateCards();
   }
 

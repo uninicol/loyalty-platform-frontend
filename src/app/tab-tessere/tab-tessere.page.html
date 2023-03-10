@@ -6,9 +6,14 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div *ngIf="cards.length===0" class="no-content">
-    Non hai ancora nessuna tessera!
+  <div *ngIf="!isLoggedIn; else elseBlock" class="no-content">
+    Accedi per vedere le tue tessere!
   </div>
+  <ng-template #elseBlock>
+    <div *ngIf="cards.length===0" class="no-content">
+      Non hai ancora nessuna tessera!
+    </div>
+  </ng-template>
 
   <div *ngFor="let card of cards" class="scene">
     <div (click)="flip(card.id)" class="card" id="{{card.id}}">
