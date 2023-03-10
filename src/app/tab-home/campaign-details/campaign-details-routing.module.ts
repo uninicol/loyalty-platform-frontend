@@ -7,7 +7,13 @@ const routes: Routes = [
   {
     path: '',
     component: CampaignDetailsPage
-  }
+  },
+  {
+    path: 'login',
+    redirectTo: '../../tab-account/login',
+    pathMatch: 'full',
+//    loadChildren: () => import('../../tab-account/login/login.module').then(m => m.LoginPageModule)
+  },
 ];
 
 @NgModule({

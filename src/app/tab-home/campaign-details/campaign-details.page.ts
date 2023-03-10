@@ -12,34 +12,34 @@ import {AuthService} from "../../auth/auth.service";
 })
 export class CampaignDetailsPage implements OnInit {
   campaign: Campaign
-  isUserAlreadySubscribed: boolean
+  isUserAlreadySubscribed: boolean | undefined
+  isLogged: boolean
 
   constructor(private navParams: NavParams,
               private http: HttpClient,
-              private auth: AuthService) {
+              public auth: AuthService) {
     this.campaign = this.navParams.get('inputValue');
-    this.isUserAlreadySubscribed = this.isUserAlreadySubscribedCheck()
+    this.isLogged = this.auth.isLoggedIn()
   }
 
   ngOnInit() {
+    this.isLogged = this.auth.isLoggedIn()
+    if (this.isLogged)
+      this.updateIsAlreadySubscribed()
   }
 
-  isUserAlreadySubscribedCheck(): boolean {
-    if (!this.auth.isLoggedIn())
-      return false // TODO non essendo loggato chiedere se registrarsi o loggarsi
-    let isRegistered = false
-    this.http.post<boolean>(`${environment.apiUrl}/client/isRegisteredTo/${this.campaign.id}`, {})
-      .subscribe(value => isRegistered = value)
-    return isRegistered;
-  }
-
-  async subscribeToCampaign() {
-    if (!this.auth.isLoggedIn())
-      throw new Error("Utente non loggato") // TODO chiedere login o registrazione
+  subscribeToCampaign() {
     this.http.post(`${environment.apiUrl}/client/registerToCampaign/${this.campaign.id}`,
       {},
       {responseType: "text"})
-      .subscribe(value => console.log(value))
-    this.isUserAlreadySubscribed = true
+      .subscribe(value => {
+        console.log(value);
+        this.isUserAlreadySubscribed = true;
+      })
+  }
+
+  private updateIsAlreadySubscribed() {
+    this.http.get<boolean>(`${environment.apiUrl}/client/isRegisteredTo/${this.campaign.id}`)
+      .subscribe(value => this.isUserAlreadySubscribed = value)
   }
 }
