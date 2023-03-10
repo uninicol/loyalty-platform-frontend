@@ -3,6 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../auth/auth.service";
+import {AlertController} from "@ionic/angular";
 
 @Component({
   selector: 'app-login',
@@ -11,39 +12,6 @@ import {AuthService} from "../../auth/auth.service";
 })
 export class LoginPage implements OnInit {
 
-  // form: any = {
-  //   username: null,
-  //   password: null
-  // };
-  // isLoggedIn = false;
-  // isLoginFailed = false;
-  // roles: string[] = [];
-  //
-  // constructor(private authService: AuthService, private storageService: Storage) { }
-  //
-  // ngOnInit(): void {
-  //   if (this.storageService.isLoggedIn()) {
-  //     this.isLoggedIn = true;
-  //     this.roles = this.storageService.getUser().roles;
-  //   }
-  // }
-  //
-  // onSubmit(): void {
-  //   const { username, password } = this.form;
-  //
-  //   this.authService.login(username, password).subscribe({
-  //     next: data => {
-  //       this.storageService.saveUser(data);
-  //
-  //       this.isLoginFailed = false;
-  //       this.isLoggedIn = true;
-  //       this.roles = this.storageService.getUser().roles;
-  //     },
-  //     error: err => {
-  //       this.isLoginFailed = true;
-  //     }
-  //   });
-  // }
   environment = environment
   auth = {
     email: '',
@@ -53,7 +21,8 @@ export class LoginPage implements OnInit {
   constructor(private httpClient: HttpClient,
               private route: ActivatedRoute,
               private router: Router,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private alertController: AlertController) {
   }
 
   ngOnInit() {
@@ -61,10 +30,22 @@ export class LoginPage implements OnInit {
 
   login() {
     let success = this.authService.login(this.auth.email, this.auth.password);
-    if (!success)
-      throw new Error("login non andato a buon fine")
-
+    if (!success) {
+      this.presentAlert()
+      throw new Error("registrazione non andata a buon fine")
+    }
     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.router.navigateByUrl(returnUrl)
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Attenzione',
+      subHeader: 'Login rifiutato',
+      message: 'Dati non corretti!',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
   }
 }
