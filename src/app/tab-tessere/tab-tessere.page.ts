@@ -29,6 +29,12 @@ export class TabTesserePage implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoggedIn = this.auth.isLoggedIn()
+    if (this.isLoggedIn)
+      return
+    this.displayedCards = []
+    this.cards = []
+    this.lastPicked = 0
   }
 
   onIonInfinite(event: any) {
@@ -64,6 +70,8 @@ export class TabTesserePage implements OnInit {
   }
 
   private updateCards() {
+    if (!this.auth.isLoggedIn())
+      return
     this.httpClient.get<Card[]>(`${environment.apiUrl}/customerCard/getCards`)
       .subscribe(dataFromBackend => {
         this.cards = dataFromBackend
