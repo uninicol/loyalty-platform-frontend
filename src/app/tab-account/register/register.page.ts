@@ -3,6 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../auth/auth.service";
+import {AlertController} from "@ionic/angular";
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,8 @@ export class RegisterPage implements OnInit {
   constructor(private httpClient: HttpClient,
               private route: ActivatedRoute,
               private router: Router,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private alertController: AlertController) {
   }
 
   ngOnInit() {
@@ -33,9 +35,23 @@ export class RegisterPage implements OnInit {
     if (this.auth.password != this.auth.confirm_password)
       throw new Error("password uguali")
     let success = this.authService.register(this.auth.name, this.auth.surname, this.auth.email, this.auth.password, this.auth.telephoneNumber);
-    if (!success)
+    if (!success) {
+      this.presentAlert()
       throw new Error("registrazione non andata a buon fine")
+    }
     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.router.navigateByUrl(returnUrl)
   }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Attenzione',
+      subHeader: 'registrazione rifiutata',
+      message: 'Email già utilizzata!',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
+
 }
