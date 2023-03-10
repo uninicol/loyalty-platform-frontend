@@ -9,10 +9,6 @@ const routes: Routes = [
     component: TabAccountPage,
   },
   {
-    path: 'prova',
-    loadChildren: () => import('./prova/prova.module').then(m => m.ProvaPageModule)
-  },
-  {
     path: 'register',
     loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
   },
