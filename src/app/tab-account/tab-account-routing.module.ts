@@ -5,27 +5,25 @@ import {TabAccountPage} from './tab-account.page';
 
 const routes: Routes = [
   {
-    path: 'account',
+    path: '',
     component: TabAccountPage,
-    children: [
-      {
-        path: 'register',
-        loadChildren: () => import('../tab-account/register/register.module').then(m => m.RegisterPageModule)
-      },
-      {
-        path: 'login',
-        loadChildren: () => import('../tab-account/login/login.module').then(m => m.LoginPageModule)
-      },
-      {
-        path: 'forgot-password',
-        loadChildren: () => import('../tab-account/forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
-      },
-    ]
   },
   {
-    path: '',
-    component: TabAccountPage
-  }
+    path: 'prova',
+    loadChildren: () => import('./prova/prova.module').then(m => m.ProvaPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
+  },
 ];
 
 @NgModule({
