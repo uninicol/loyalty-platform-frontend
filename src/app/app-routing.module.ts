@@ -23,9 +23,9 @@ const routes: Routes = [
     loadChildren: () => import('./search/search.module').then(m => m.SearchPageModule)
   },
   {
-    path: 'campaign-details',
-    loadChildren: () => import('./tab-home/campaign-details/campaign-details.module').then(m => m.CampaignDetailsPageModule)
-  }
+    path: 'login',
+    loadChildren: () => import('./tab-account/login/login.module').then(m => m.LoginPageModule)
+  },
 ];
 @NgModule({
   imports: [

@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {CampaignDetailsPage} from './campaign-details.page';
+import {LoginPage} from "../../tab-account/login/login.page";
 
 const routes: Routes = [
   {
@@ -10,8 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    redirectTo: '../../tab-account/login',
-    pathMatch: 'full',
+    component: LoginPage
 //    loadChildren: () => import('../../tab-account/login/login.module').then(m => m.LoginPageModule)
   },
 ];

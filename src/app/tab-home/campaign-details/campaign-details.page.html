@@ -12,7 +12,7 @@
   <ion-button href="{{campaign.shopUrl}}" size="small">Visita lo shop</ion-button>
 
   <div *ngIf="!isLogged">
-    <ion-button [routerLink]="['/login']">Accedi per ricevere i vantaggi</ion-button>
+    <ion-button routerLink="/login">Accedi per ricevere i vantaggi</ion-button>
   </div>
 
   <div *ngIf="isLogged && !isUserAlreadySubscribed">
