@@ -4,7 +4,7 @@ import {environment} from "../../environments/environment";
 
 const USER_KEY = 'auth-user';
 
-interface UserDetails {
+export interface UserDetails {
   id: number
   name: string,
   surname: string,
@@ -19,7 +19,6 @@ export class AuthService {
   }
 
   register(name: string, surname: string, email: string, password: string, telephoneNumber: string): boolean {
-    //password = AES.encrypt(password, environment.jwtKey).toString(); // con https non serve
     let success = true
     this.http.post(
       `${environment.apiUrl}/client/auth/signup`, {name, surname, email, password, telephoneNumber},
@@ -34,7 +33,6 @@ export class AuthService {
   }
 
   login(email: string, password: string): boolean {
-    //password = AES.encrypt(password, environment.jwtKey).toString();
     let success = true
     this.http.post<UserDetails>(
       `${environment.apiUrl}/client/auth/signin`, {email, password}, {observe: 'response'})
