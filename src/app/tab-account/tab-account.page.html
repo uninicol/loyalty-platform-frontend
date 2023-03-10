@@ -17,20 +17,17 @@
     </ion-item>
     -->
     <ion-item [button]="true" [routerLink]="['/']">
-      <ion-label>Account</ion-label>
-    </ion-item>
-    <ion-item [button]="true" [routerLink]="['/']">
       <ion-label>Supporto</ion-label>
     </ion-item>
     <ion-item [button]="true" [routerLink]="['/']">
       <ion-label>Impostazioni</ion-label>
     </ion-item>
-    <ion-item [button]="true" [routerLink]="['./prova']">
-      <ion-label>prova</ion-label>
-    </ion-item>
   </ion-list>
 
   <div *ngIf="isLogged()">
+    <ion-item [button]="true" routerLink="./account">
+      <ion-label>Account</ion-label>
+    </ion-item>
     <ion-item (click)="logout()" [button]="true">
       <ion-label>Log out</ion-label>
     </ion-item>
