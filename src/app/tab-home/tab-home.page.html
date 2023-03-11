@@ -7,17 +7,18 @@
   </ion-refresher>
 
   <div class="scrolling-wrapper">
-    <ion-button (click)="categoryButtonRefresh(category)" *ngFor="let category of categories" class="card"
+    <ion-button (click)="categoryButtonRefresh(category)" *ngFor="let category of categoryBarService.categories"
+                class="card"
                 fill="outline" id="{{category}}"
                 size="small">{{category}}</ion-button>
   </div>
 
 
-  <div *ngIf="displayedCampaigns.length===0" class="no-content">
+  <div *ngIf="campaignsCardsService.displayedCampaigns.length===0" class="no-content">
     Non ci sono campagne da vedere!
   </div>
   <!--carte delle campagne-->
-  <ion-card (click)="openCampaignDetails(campaign)" *ngFor="let campaign of displayedCampaigns">
+  <ion-card (click)="openCampaignDetails(campaign)" *ngFor="let campaign of campaignsCardsService.displayedCampaigns">
     <ion-card-header>
       <ion-toolbar>
 
