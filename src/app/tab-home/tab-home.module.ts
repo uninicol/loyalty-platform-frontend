@@ -8,7 +8,6 @@ import {TabHomePageRoutingModule} from './tab-home-routing.module';
 
 import {TabHomePage} from './tab-home.page';
 import {TabAccountPageModule} from "../tab-account/tab-account.module";
-import {CategoriesFilterButtonsComponent} from "./categories-filter-buttons/categories-filter-buttons.component";
 
 @NgModule({
   imports: [
@@ -18,7 +17,7 @@ import {CategoriesFilterButtonsComponent} from "./categories-filter-buttons/cate
     TabHomePageRoutingModule,
     TabAccountPageModule
   ],
-  declarations: [TabHomePage, CategoriesFilterButtonsComponent]
+  declarations: [TabHomePage]
 })
 export class TabHomePageModule {
 }
