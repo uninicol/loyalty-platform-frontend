@@ -1,11 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Card} from "./Card";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import {Campaign} from "../tab-home/Campaign";
-import {CampaignDetailsPage} from "../tab-home/campaign-details/campaign-details.page";
-import {ModalController} from "@ionic/angular";
 import {AuthService} from "../auth/auth.service";
+import {TessereService} from "./tessere.service";
+import {CampaignsCardsService} from "../tab-home/campaigns-cards.service";
 
 @Component({
   selector: 'app-tab-tessere',
@@ -15,77 +11,29 @@ import {AuthService} from "../auth/auth.service";
 export class TabTesserePage implements OnInit {
 
   isLoggedIn: boolean
-  CARD_DISPLAYED_EACH_REFRESH: number = 10
-  cards: Card[] = []
-  displayedCards: Card[] = []
-  lastPicked: number = 0
 
-  constructor(private modalController: ModalController,
-              private httpClient: HttpClient,
-              private auth: AuthService) {
+  constructor(private auth: AuthService,
+              public tessereService: TessereService,
+              public campaignService: CampaignsCardsService) {
     this.isLoggedIn = auth.isLoggedIn()
     if (this.isLoggedIn)
-      this.updateCards();
+      this.tessereService.updateCards();
   }
 
   ngOnInit() {
-    this.isLoggedIn = this.auth.isLoggedIn()
-    if (this.isLoggedIn)
-      return
-    this.displayedCards = []
-    this.cards = []
-    this.lastPicked = 0
+    // this.isLoggedIn = this.auth.isLoggedIn()
+    // if (this.isLoggedIn)
+    //   return
+    // this.displayedCards = []
+    // this.cards = []
+    // this.lastPicked = 0
   }
 
   onIonInfinite(event: any) {
-    setTimeout(() => {
-      this.addItems()
-      event.target.complete();
-    }, 1000);
+    this.tessereService.addDispayedCards(event)
   }
 
   onIonRefresh(event: any) {
-    this.displayedCards = []
-    this.lastPicked = 0
-    setTimeout(() => {
-      this.updateCards()
-      event.target.complete();
-    }, 300);
-  }
-
-  async openCampaignDetails(campaign: Campaign) {
-    const modal = await this.modalController.create({
-      component: CampaignDetailsPage,
-      componentProps: {
-        inputValue: campaign
-      }
-    });
-    return await modal.present();
-  }
-
-  flip(id: number) {
-    let flippedCard = document.getElementById(String(id));
-    // @ts-ignore
-    flippedCard.classList.toggle('is-flipped');
-  }
-
-  private updateCards() {
-    if (!this.auth.isLoggedIn())
-      return
-    this.httpClient.get<Card[]>(`${environment.apiUrl}/client/getCards`)
-      .subscribe(dataFromBackend => {
-        this.cards = dataFromBackend
-        this.addItems()
-      });
-  }
-
-  private addItems() {
-    let sum = 0
-    let i
-    for (i = this.lastPicked; sum != this.CARD_DISPLAYED_EACH_REFRESH && i < this.cards.length; i++) {
-      this.displayedCards.push(this.cards[i])
-      sum++
-    }
-    this.lastPicked = i
+    this.tessereService.refreshCards(event)
   }
 }

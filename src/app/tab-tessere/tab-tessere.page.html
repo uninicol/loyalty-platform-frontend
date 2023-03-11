@@ -10,13 +10,13 @@
     Accedi per vedere le tue tessere!
   </div>
   <ng-template #elseBlock>
-    <div *ngIf="cards.length===0" class="no-content">
+    <div *ngIf="tessereService.cards.length===0" class="no-content">
       Non hai ancora nessuna tessera!
     </div>
   </ng-template>
 
-  <div *ngFor="let card of cards" class="scene">
-    <div (click)="flip(card.id)" class="card" id="{{card.id}}">
+  <div *ngFor="let card of tessereService.cards" class="scene">
+    <div (click)="tessereService.flip(card.id)" class="card" id="{{card.id}}">
       <div class="card__face card__face--front">
         <ion-card button="true">
           <ion-card-header>
@@ -45,7 +45,7 @@
               campagna attuale: {{card.campaign.shortDescription}}
             </div>
           </ion-card-content>
-          <ion-button (click)="openCampaignDetails(card.campaign)" fill="outline">
+          <ion-button (click)="campaignService.openCampaignDetails(card.campaign)" fill="outline">
             vedi campagna
           </ion-button>
 
