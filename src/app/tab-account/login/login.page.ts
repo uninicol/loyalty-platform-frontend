@@ -17,6 +17,8 @@ export class LoginPage implements OnInit {
     email: '',
     password: ''
   }
+  isLoggedIn = false;
+  isLoginFailed = false;
 
   constructor(private httpClient: HttpClient,
               private route: ActivatedRoute,
@@ -26,16 +28,28 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+      this.isLoggedIn = true;
+    }
   }
 
   login() {
-    let success = this.authService.login(this.auth.email, this.auth.password);
-    if (!success) {
-      this.presentAlert()
-      throw new Error("registrazione non andata a buon fine")
-    }
-    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.router.navigateByUrl(returnUrl)
+    this.authService.login(this.auth.email, this.auth.password)
+      .subscribe({
+        next: data => {
+          console.log("login eseguito con successo")
+          this.authService.saveUser(data);
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          this.router.navigateByUrl(returnUrl)
+        },
+        error: _ => {
+          this.presentAlert()
+          console.log("dati non corretti")
+          this.isLoginFailed = true;
+        }
+      });
   }
 
   async presentAlert() {

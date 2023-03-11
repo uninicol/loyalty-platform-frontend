@@ -95,7 +95,7 @@ export class TabHomePage implements OnInit, AfterViewInit {
 
   private updateCampaigns() {
     this.httpClient
-      .get<Campaign[]>(`${environment.apiUrl}/campaign/getCampaigns`)
+      .get<Campaign[]>(`${environment.apiUrl}/activity/campaign/getCampaigns`)
       .subscribe(dataFromBackend => {
         this.campaigns = dataFromBackend
         this.addItems()

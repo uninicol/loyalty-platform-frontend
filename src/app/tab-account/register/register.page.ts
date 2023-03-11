@@ -21,6 +21,9 @@ export class RegisterPage implements OnInit {
     telephoneNumber: ''
   }
 
+  isSuccessful = false;
+  isSignUpFailed = false;
+
   constructor(private httpClient: HttpClient,
               private route: ActivatedRoute,
               private router: Router,
@@ -31,16 +34,25 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  public register() {
+  register() {
     if (this.auth.password != this.auth.confirm_password)
-      throw new Error("password uguali")
-    let success = this.authService.register(this.auth.name, this.auth.surname, this.auth.email, this.auth.password, this.auth.telephoneNumber);
-    if (!success) {
-      this.presentAlert()
-      throw new Error("registrazione non andata a buon fine")
-    }
-    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.router.navigateByUrl(returnUrl)
+      throw new Error("password non uguali")
+    this.authService.register(this.auth.name, this.auth.surname, this.auth.email, this.auth.password, this.auth.telephoneNumber)
+      .subscribe({
+        next: data => {
+          console.log("registrato con successo")
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+          this.authService.saveUser(data)
+          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          this.router.navigateByUrl(returnUrl)
+        },
+        error: _ => {
+          console.log("Registrazione rifiutata")
+          this.presentAlert()
+          this.isSignUpFailed = true;
+        }
+      });
   }
 
   async presentAlert() {

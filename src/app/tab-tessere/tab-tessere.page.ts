@@ -72,7 +72,7 @@ export class TabTesserePage implements OnInit {
   private updateCards() {
     if (!this.auth.isLoggedIn())
       return
-    this.httpClient.get<Card[]>(`${environment.apiUrl}/customerCard/getCards`)
+    this.httpClient.get<Card[]>(`${environment.apiUrl}/client/getCards`)
       .subscribe(dataFromBackend => {
         this.cards = dataFromBackend
         this.addItems()
