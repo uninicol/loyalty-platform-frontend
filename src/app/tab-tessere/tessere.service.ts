@@ -58,4 +58,10 @@ export class TessereService {
     }
     this.lastPicked = i
   }
+
+  clear() {
+    this.displayedCards = []
+    this.cards = []
+    this.lastPicked = 0
+  }
 }

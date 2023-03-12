@@ -6,54 +6,53 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div *ngIf="!isLoggedIn; else elseBlock" class="no-content">
+  <div *ngIf="!this.auth.isLoggedIn(); else elseBlock" class="no-content">
     Accedi per vedere le tue tessere!
   </div>
   <ng-template #elseBlock>
     <div *ngIf="tessereService.cards.length===0" class="no-content">
       Non hai ancora nessuna tessera!
     </div>
-  </ng-template>
 
-  <div *ngFor="let card of tessereService.cards" class="scene">
-    <div (click)="tessereService.flip(card.id)" class="card" id="{{card.id}}">
-      <div class="card__face card__face--front">
-        <ion-card button="true">
-          <ion-card-header>
-            <ion-card-title>{{card.name}}</ion-card-title>
-            <!--<ion-card-subtitle>{{card.company}}</ion-card-subtitle>-->
-          </ion-card-header>
+    <div *ngFor="let card of tessereService.cards" class="scene">
+      <div (click)="tessereService.flip(card.id)" class="card" id="{{card.id}}">
+        <div class="card__face card__face--front">
+          <ion-card button="true">
+            <ion-card-header>
+              <ion-card-title>{{card.name}}</ion-card-title>
+              <!--<ion-card-subtitle>{{card.company}}</ion-card-subtitle>-->
+            </ion-card-header>
 
-          <ion-card-content>
-            <div class="content">
-              points: {{card.points}}<br>
-              tier: {{card.tier}}
-            </div>
-          </ion-card-content>
+            <ion-card-content>
+              <div class="content">
+                points: {{card.points}}<br>
+                tier: {{card.tier}}
+              </div>
+            </ion-card-content>
 
-        </ion-card>
-      </div>
-      <div class="card__face card__face--back">
-        <ion-card button="true">
-          <ion-card-header>
-            <!--<ion-card-title>{{card.company}} card</ion-card-title>-->
-            <ion-card-title>codice: {{card.id}}<br></ion-card-title>
-          </ion-card-header>
+          </ion-card>
+        </div>
+        <div class="card__face card__face--back">
+          <ion-card button="true">
+            <ion-card-header>
+              <!--<ion-card-title>{{card.company}} card</ion-card-title>-->
+              <ion-card-title>codice: {{card.id}}<br></ion-card-title>
+            </ion-card-header>
 
-          <ion-card-content>
-            <div class="content">
-              campagna attuale: {{card.campaign.shortDescription}}
-            </div>
-          </ion-card-content>
-          <ion-button (click)="campaignService.openCampaignDetails(card.campaign)" fill="outline">
-            vedi campagna
-          </ion-button>
+            <ion-card-content>
+              <div class="content">
+                campagna attuale: {{card.campaign.shortDescription}}
+              </div>
+            </ion-card-content>
+            <ion-button (click)="campaignService.openCampaignDetails(card.campaign)" fill="outline">
+              vedi campagna
+            </ion-button>
 
-        </ion-card>
+          </ion-card>
+        </div>
       </div>
     </div>
-  </div>
-
+  </ng-template>
   <!--scroll infinito-->
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

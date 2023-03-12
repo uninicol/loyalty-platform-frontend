@@ -10,23 +10,17 @@ import {CampaignsCardsService} from "../tab-home/campaigns-cards.service";
 })
 export class TabTesserePage implements OnInit {
 
-  isLoggedIn: boolean
-
-  constructor(private auth: AuthService,
+  constructor(public auth: AuthService,
               public tessereService: TessereService,
               public campaignService: CampaignsCardsService) {
-    this.isLoggedIn = auth.isLoggedIn()
-    if (this.isLoggedIn)
+    if (this.auth.isLoggedIn())
       this.tessereService.updateCards();
   }
 
   ngOnInit() {
-    // this.isLoggedIn = this.auth.isLoggedIn()
-    // if (this.isLoggedIn)
-    //   return
-    // this.displayedCards = []
-    // this.cards = []
-    // this.lastPicked = 0
+    if (this.auth.isLoggedIn())
+      return
+    this.tessereService.clear()
   }
 
   onIonInfinite(event: any) {
